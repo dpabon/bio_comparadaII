@@ -11,14 +11,10 @@ for(dic in 1:length(directorios)){
   for(i in 1:length(datos[,dic+1])){
     if(is.na(datos[i,dic+1])==F){
       dato <- read.GenBank(datos[i,dic+1], species.names = T)
-      write.dna(dato, paste(attr(dato, "specie"), "_", i, ".fasta", sep = ""), format = "fasta")
-      #dato1 <- read.fasta(file =paste(attr(dato, "specie"), "_", i, ".fasta", sep = ""), seqtype = "DNA" )
-      #write.fasta(dato1, names = paste(attr(dato, "specie"), "_", i, ".fasta", sep = ""), file.out = paste(attr(dato, "specie"), "_", i, ".fasta", sep = ""))
+      write.dna(dato, paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""), format = "fasta")
+      dato1 <- read.fasta(file =paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""), seqtype = "DNA" )
+      write.fasta(dato1, names = paste(attr(dato, "specie"), "_", datos[i,dic+1], sep = ""), file.out = paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""))
+      Sys.sleep(5)
     }
   }
 }
-
-prueba <- read.GenBank(datos[1,4])
-prueba
-class(datos[29,2])
-is.na(datos[29,2])
