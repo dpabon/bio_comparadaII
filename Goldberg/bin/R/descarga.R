@@ -14,7 +14,7 @@ for(dic in 1:length(directorios)){
       write.dna(dato, paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""), format = "fasta")
       dato1 <- read.fasta(file =paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""), seqtype = "DNA" )
       write.fasta(dato1, names = paste(attr(dato, "specie"), "_", datos[i,dic+1], sep = ""), file.out = paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""))
-      Sys.sleep(5)
+      Sys.sleep(20)
     }
   }
 }
