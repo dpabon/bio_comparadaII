@@ -13,8 +13,19 @@ for(dic in 1:length(directorios)){
       dato <- read.GenBank(datos[i,dic+1], species.names = T)
       write.dna(dato, paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""), format = "fasta")
       dato1 <- read.fasta(file =paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""), seqtype = "DNA" )
-      write.fasta(dato1, names = paste(attr(dato, "specie"), "_", datos[i,dic+1], sep = ""), file.out = paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""))
+      write.fasta(dato1, names = paste(attr(dato, "specie"), sep = ""), file.out = paste(attr(dato, "specie"), "_", datos[i,dic+1], ".fasta", sep = ""))
       Sys.sleep(20)
     }
   }
+}
+
+
+## Descarga secuencias Ceanothus
+datos <- read.csv("~/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus.csv")
+setwd("~/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus/")
+for(i in datos[,2]){
+  sec <- read.GenBank(i, species.names = T)
+  write.dna(sec, paste(attr(sec, "specie"), "_",i, ".fasta", sep = ""), format = "fasta")
+  dato1 <- read.fasta(file =paste(attr(dato, "specie"), "_",i, ".fasta", sep = ""), seqtype = "DNA" )
+  write.fasta(dato1, names = paste(attr(dato, "specie"), sep = ""), file.out = paste(attr(dato, "specie"), "_",i, ".fasta", sep = ""))
 }
