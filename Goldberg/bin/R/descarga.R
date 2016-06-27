@@ -24,8 +24,11 @@ for(dic in 1:length(directorios)){
 datos <- read.csv("~/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus.csv")
 setwd("~/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus/")
 for(i in datos[,2]){
-  sec <- read.GenBank(i, species.names = T)
-  write.dna(sec, paste(attr(sec, "specie"), "_",i, ".fasta", sep = ""), format = "fasta")
-  dato1 <- read.fasta(file =paste(attr(dato, "specie"), "_",i, ".fasta", sep = ""), seqtype = "DNA" )
-  write.fasta(dato1, names = paste(attr(dato, "specie"), sep = ""), file.out = paste(attr(dato, "specie"), "_",i, ".fasta", sep = ""))
+  if(is.na(i)==F){
+    sec <- read.GenBank(i, species.names = T)
+    write.dna(sec, paste(attr(sec, "specie"), "_",i, ".fasta", sep = ""), format = "fasta")
+    dato1 <- read.fasta(file =paste(attr(sec, "specie"), "_",i, ".fasta", sep = ""), seqtype = "DNA" )
+    write.fasta(dato1, names = paste(attr(sec, "specie"), sep = ""), file.out = paste(attr(sec, "specie"), "_",i, ".fasta", sep = ""))
+    Sys.sleep(20) 
+  }
 }
