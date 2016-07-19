@@ -1,7 +1,7 @@
 ## Reconstruccion filogenetica de Arctostaphylos sin incluir reloj molecular
 
 ## datos
-datos <- readDiscreteCharacterData("/home/user/MEGAsync/bio_comparadaII/Goldberg/data/Arctostaphylos/NEXUS/Arctostaphylos.nex")
+datos <- readDiscreteCharacterData("/home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Arctostaphylos/NEXUS/Arctostaphylos.nex")
 
 ## Numero de taxa
 ntax <- datos.ntaxa()
