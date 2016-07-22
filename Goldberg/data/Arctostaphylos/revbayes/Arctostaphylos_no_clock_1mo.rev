@@ -80,9 +80,9 @@ mymodel = model(seq)
 
 ## Monitores
 
-monitors[1] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=100)
-monitors[2] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=100, phylogeny)
-monitors[3] = mnScreen(printgen=100, TL)
+monitors[1] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=1000)
+monitors[2] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=1000, phylogeny)
+monitors[3] = mnScreen(printgen=1000, TL)
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
