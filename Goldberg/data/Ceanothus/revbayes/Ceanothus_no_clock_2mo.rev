@@ -1,0 +1,93 @@
+## Reconstruccion filogenetica de Arctostaphylos sin incluir reloj molecular
+
+## datos
+datos <- readDiscreteCharacterData("/home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus/NEXUS/Ceanothus.nex")
+
+## Numero de taxa
+ntax <- datos.ntaxa()
+
+## taxa
+
+taxa <- datos.taxa()
+
+# numero de ramas
+
+n_branches <- 2 * ntax - 3
+
+# set my move index
+mvi = 0
+mni = 0
+
+## Modelo de substitución GTR+G
+er_prior <- v(1,1,1,1,1,1)
+er ~ dnDirichlet(er_prior) RevBayes
+moves[++mvi] = mvSimplexElementScale(er)
+
+pi_prior <- v(1,1,1,1)
+pi ~ dnDirichlet(pi_prior)
+moves[++mvi] = mvSimplexElementScale(pi)
+
+Q := fnGTR(er,pi)
+# Gamma
+# segun el manual de revbayes
+# alpha_prior_mean <- 5.0
+# alpha_prior_sd <- 0.587405
+# alpha ~ dnLognormal( alpha_prior_mean, alpha_prior_sd )
+
+#alphaprior
+# gamma shape obtenido de jmodeltest 0.2190
+
+alpha_prior <- 0.2190
+rate_prior <- 0.05
+alpha  ~ dnGamma(alpha_prior, rate_prior)
+
+# inicio nodo deterministico
+gamma_rates := fnDiscretizeGamma( alpha, alpha, 4 )
+
+# Escala del movimiento del parametro
+moves[++mvi] = mvScale(alpha, weight=2.0)
+
+# Tree prior
+topology ~ dnUniformTopology(taxa=taxa)
+
+moves[++mvi] = mvNNI(topology, weight=3.0)
+
+moves[++mvi] = mvSPR(topology, weight=3.0)
+
+
+## Prior longitud de ramas exponencial
+
+for(i in 1:n_branches){
+	br_lens[i] ~ dnExponential(10.0)
+	moves[++mvi] = mvScale(br_lens[i])
+}
+
+TL := sum(br_lens)
+
+phylogeny := treeAssembly(topology, br_lens)
+
+##
+
+seq ~ dnPhyloCTMC(tree=phylogeny,siteRates=gamma_rates, Q=Q, type="DNA")
+
+seq.clamp(datos)
+
+mymodel = model(seq)
+
+## Monitores
+
+monitors[1] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=1000)
+monitors[2] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=1000, phylogeny)
+monitors[3] = mnScreen(printgen=1000, TL)
+
+## MCMC
+mymcmc = mcmc(mymodel, monitors, moves)
+
+mymcmc.run(generations=2000000)
+
+treetrace = readTreeTrace("output/Ceanothus_GTR_G.trees", treetype="non-clock")
+
+map_tree = mapTree(treetrace,"output/Ceanothus_GTR_G_K80_MAP.tree")
+
+# exit
+quit()
