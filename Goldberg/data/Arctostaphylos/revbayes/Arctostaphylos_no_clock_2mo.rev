@@ -41,15 +41,15 @@ Q := fnK80(kappa)
 #alphaprior
 # gamma shape obtenido de jmodeltest 0.1300 linea 1312
 
-alpha_prior <- 0.1300
-rate_prior <- 0.05
-alpha  ~ dnGamma(alpha_prior, rate_prior)
+shape_prior <- 0.1300
+prior_sd <-0.58
+shape  ~ dnLognormal(shape_prior, prior_sd)
 
 # inicio nodo deterministico
-gamma_rates := fnDiscretizeGamma( alpha, alpha, 4 )
+gamma_rates := fnDiscretizeGamma( shape, shape, 4 )
 
 # Escala del movimiento del parametro
-moves[++mvi] = mvScale(alpha, weight=2.0)
+moves[++mvi] = mvScale(shape, weight=2.0)
 
 # Tree prior
 topology ~ dnUniformTopology(taxa=taxa)
@@ -80,9 +80,9 @@ mymodel = model(seq)
 
 ## Monitores
 
-monitors[1] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=1000)
-monitors[2] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=1000, phylogeny)
-monitors[3] = mnScreen(printgen=1000, TL)
+monitors[++mni] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=1000)
+monitors[++mni] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=1000, phylogeny)
+monitors[++mni] = mnScreen(printgen=1000, TL)
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)

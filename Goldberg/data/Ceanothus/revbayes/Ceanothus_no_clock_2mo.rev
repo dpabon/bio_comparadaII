@@ -20,7 +20,7 @@ mni = 0
 
 ## Modelo de substitución GTR+G
 er_prior <- v(1,1,1,1,1,1)
-er ~ dnDirichlet(er_prior) RevBayes
+er ~ dnDirichlet(er_prior)
 moves[++mvi] = mvSimplexElementScale(er)
 
 pi_prior <- v(1,1,1,1)
@@ -36,10 +36,11 @@ Q := fnGTR(er,pi)
 
 #alphaprior
 # gamma shape obtenido de jmodeltest 0.2190
+#
 
 alpha_prior <- 0.2190
-rate_prior <- 0.05
-alpha  ~ dnGamma(alpha_prior, rate_prior)
+sd_prior <- 0.5
+alpha  ~ dnLognormal(alpha_prior, sd_prior)
 
 # inicio nodo deterministico
 gamma_rates := fnDiscretizeGamma( alpha, alpha, 4 )
@@ -76,9 +77,9 @@ mymodel = model(seq)
 
 ## Monitores
 
-monitors[1] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=1000)
-monitors[2] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=1000, phylogeny)
-monitors[3] = mnScreen(printgen=1000, TL)
+monitors[++mni] = mnModel(filename="output/Ceanothus_GTR_G.log", printgen=1000)
+monitors[++mni] = mnFile(filename="output/Ceanothus_GTR_G.trees", printgen=1000, phylogeny)
+monitors[++mni] = mnScreen(printgen=1000, TL)
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
@@ -87,7 +88,7 @@ mymcmc.run(generations=2000000)
 
 treetrace = readTreeTrace("output/Ceanothus_GTR_G.trees", treetype="non-clock")
 
-map_tree = mapTree(treetrace,"output/Ceanothus_GTR_G_K80_MAP.tree")
+map_tree = mapTree(treetrace,"output/Ceanothus_GTR_G_MAP.tree")
 
 # exit
 quit()
