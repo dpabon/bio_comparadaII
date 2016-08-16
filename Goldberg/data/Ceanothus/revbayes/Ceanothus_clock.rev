@@ -66,8 +66,8 @@ moves[++mvi] = mvSlide(turnover,delta=1,tune=true,weight=1)
 
 ### process time ###
 ## Uniform prior on process time
-root_time ~ dnUnif(50.5, 45.4)
-moves[++mvi] = mvSlide(root_time,delta=1,tune=true,weight=1)
+root_time ~ dnUnif(45.4, 50.5)
+moves[++mvi] = mvSlide(root_time, delta=1,tune=true,weight=1)
 ## The sampling-through-time parameter
 fossil_rate ~ dnUniform(0,10)
 moves[++mvi] = mvSlide(fossil_rate,delta=1,tune=true,weight=1)
