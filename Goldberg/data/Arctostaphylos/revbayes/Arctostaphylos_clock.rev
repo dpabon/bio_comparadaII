@@ -69,7 +69,7 @@ moves[++mvi] = mvSlide(turnover,delta=1,tune=true,weight=1)
 
 ### process time ###
 ## Uniform prior on process time
-root_time ~ dnUnif(23.03, 33.8) # oldest fossil is 61 Ma
+root_time ~ dnUnif(23.03, 33.10) 
 moves[++mvi] = mvSlide(root_time,delta=0.001,tune=true,weight=1)
 ## The sampling-through-time parameter
 fossil_rate ~ dnUniform(0,10)
@@ -112,7 +112,7 @@ mymodel = model(seq)
 ## Monitores
 
 monitors[++mni] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=10)
-monitors[++mni] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=10, phylogeny)
+monitors[++mni] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=10, separator = TAB, psi)
 monitors[++mni] = mnScreen(printgen=10, seq_clock_rate, root_time)
 
 ## MCMC
