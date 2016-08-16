@@ -42,11 +42,11 @@ Q := fnK80(kappa)
 # gamma shape obtenido de jmodeltest 0.1300 linea 1312
 
 shape_prior <- 0.1300
-prior_sd <-0.58
+prior_sd <-0.5
 shape  ~ dnLognormal(shape_prior, prior_sd)
 
 # inicio nodo deterministico
-gamma_rates := fnDiscretizeGamma( shape, shape, 4 )
+gamma_rates := fnDiscretizeGamma( shape, 1/shape, 4 )
 
 # Escala del movimiento del parametro
 moves[++mvi] = mvScale(shape, weight=2.0)
