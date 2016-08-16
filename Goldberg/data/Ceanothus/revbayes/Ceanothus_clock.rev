@@ -1,0 +1,125 @@
+## Reconstruccion filogenetica de Arctostaphylos sin incluir reloj molecular
+
+## datos
+datos <- readDiscreteCharacterData("/home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus/NEXUS/Ceanothus.nex")
+
+## Numero de taxa
+ntax <- datos.ntaxa()
+
+## taxa
+
+taxa <- datos.taxa()
+
+# numero de ramas
+
+n_branches <- 2 * ntax - 3
+
+# set my move index
+mvi = 0
+mni = 0
+
+## Modelo de substitución GTR+G
+er_prior <- v(1,1,1,1,1,1)
+er ~ dnDirichlet(er_prior)
+moves[++mvi] = mvSimplexElementScale(er)
+
+pi_prior <- v(1,1,1,1)
+pi ~ dnDirichlet(pi_prior)
+moves[++mvi] = mvSimplexElementScale(pi)
+
+Q := fnGTR(er,pi)
+# Gamma
+# segun el manual de revbayes
+# alpha_prior_mean <- 5.0
+# alpha_prior_sd <- 0.587405
+# alpha ~ dnLognormal( alpha_prior_mean, alpha_prior_sd )
+
+#alphaprior
+# gamma shape obtenido de jmodeltest 0.2190
+#
+
+alpha_prior <- 0.2190
+sd_prior <- 0.5
+alpha  ~ dnLognormal(alpha_prior, sd_prior)
+
+# inicio nodo deterministico
+gamma_rates := fnDiscretizeGamma( alpha, 1/alpha, 4 )
+
+# Escala del movimiento del parametro
+moves[++mvi] = mvScale(alpha, weight=2.0)
+
+##############
+# Tree model #
+##############
+
+# Specify a prior on the diversification and turnover rate
+diversification ~ dnUniform(0,10)
+diversification.setValue(0.01)
+turnover ~ dnUniform(0,10)
+turnover.setValue(0.01)
+
+# now transform the diversification and turnover rates into speciation and extinction rates
+speciation := diversification + turnover
+moves[++mvi] = mvSlide(diversification,delta=1,tune=true,weight=1)
+extinction := turnover
+moves[++mvi] = mvSlide(turnover,delta=1,tune=true,weight=1)
+
+### process time ###
+## Uniform prior on process time
+root_time ~ dnUnif(50.5, 45.4)
+moves[++mvi] = mvSlide(root_time,delta=1,tune=true,weight=1)
+## The sampling-through-time parameter
+fossil_rate ~ dnUniform(0,10)
+moves[++mvi] = mvSlide(fossil_rate,delta=1,tune=true,weight=1)
+## The probability of sampling at the present (rho)
+sampling_prob <- ntax / 60
+
+## the Birth-death distribution ##
+psi ~ dnFBDP(rootAge=root_time, lambda=speciation, mu=extinction, psi=fossil_rate, rho=sampling_prob, condition="survival", taxa=taxa)
+
+
+# all moves are sliding proposals but you could use scaling proposals for the rates too
+
+moves[++mvi] = mvNarrow(psi, weight=5.0)
+moves[++mvi] = mvNNI(psi, weight=1.0)
+moves[++mvi] = mvFNPR(psi, weight=3.0)
+moves[++mvi] = mvSubtreeScale(psi, weight=3.0)
+moves[++mvi] = mvNodeTimeSlideUniform(psi, weight=15.0)
+
+#moves[++mvi] = mvCollapseExpandFossilBranch(psi,process_time,weight=10.0)
+
+
+###################
+# Molecular clock #
+###################
+
+### we use a uniform prior on the log-transform clock rate
+log_seq_clock_rate ~ dnUniform(-6,1)
+moves[++mvi] = mvSlide(log_seq_clock_rate, weight=2.0)
+seq_clock_rate := 10^log_seq_clock_rate
+
+
+
+seq ~ dnPhyloCTMC(tree=psi, branchRates=seq_clock_rate, siteRates=gamma_rates, Q=Q, type="DNA")
+
+seq.clamp(datos)
+
+mymodel = model(seq)
+
+## Monitores
+
+monitors[++mni] = mnModel(filename="output/Ceanothus_GTR_G.log", printgen=10)
+monitors[++mni] = mnFile(filename="output/Ceanothus_GTR_G.trees", printgen=10, psi)
+monitors[++mni] = mnScreen(printgen=10, seq_clock_rate, root_time)
+
+## MCMC
+mymcmc = mcmc(mymodel, monitors, moves)
+
+mymcmc.run(generations=30000)
+
+treetrace = readTreeTrace("output/Ceanothus_GTR_G.trees", treetype="non-clock")
+
+map_tree = mapTree(treetrace,"output/Ceanothus_GTR_G_MAP.tree")
+
+# exit
+quit()
