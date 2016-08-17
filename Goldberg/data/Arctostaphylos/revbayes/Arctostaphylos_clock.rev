@@ -111,18 +111,18 @@ mymodel = model(seq)
 
 ## Monitores
 
-monitors[++mni] = mnModel(filename="output/Arctostaphylos_K80.log", printgen=10)
-monitors[++mni] = mnFile(filename="output/Arctostaphylos_K80.trees", printgen=10, separator = TAB, psi)
-monitors[++mni] = mnScreen(printgen=10, seq_clock_rate, root_time)
+monitors[++mni] = mnModel(filename="output_arc/Arctostaphylos_K80.log", printgen=100)
+monitors[++mni] = mnFile(filename="output_arc/Arctostaphylos_K80.trees", printgen=100, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=100, seq_clock_rate, root_time)
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
-mymcmc.run(generations=100000)
+mymcmc.run(generations=2000000)
 
-treetrace = readTreeTrace("output/Arctostaphylos_K80.trees", treetype="clock")
+treetrace = readTreeTrace("output_arc/Arctostaphylos_K80.trees", treetype="clock")
 
-map_tree = mapTree(treetrace,"output/Arctostaphylos_K80_MAP.tree")
+map_tree = mapTree(treetrace,"output_arc/Arctostaphylos_K80_MAP.tree")
 
 # exit
 quit()
