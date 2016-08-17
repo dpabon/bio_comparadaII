@@ -8,7 +8,7 @@ sudo apt-get install checkinstall make automake cmake autoconf
 echo 'Compiladores instalados'
 
 ## Programas de utilidad
-sudo apt-get install git unzip vim
+sudo apt-get install git unzip vim libboost-date-time1.58.0 libboost-filesystem1.58.0 libboost-iostreams1.58.0 libboost-python1.58.0 libboost-serialization1.58.0 libboost-system1.58.0 libboost-thread1.58.0
 
 ### Instalando revbayes 1.0.0
 wget https://github.com/revbayes/revbayes/archive/v1.0.0-release.zip
