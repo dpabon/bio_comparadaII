@@ -11,9 +11,8 @@ echo 'Compiladores instalados'
 sudo apt-get install git unzip vim libboost-date-time1.58.0 libboost-filesystem1.58.0 libboost-iostreams1.58.0 libboost-python1.58.0 libboost-serialization1.58.0 libboost-system1.58.0 libboost-thread1.58.0
 
 ### Instalando revbayes 1.0.0
-wget https://github.com/revbayes/revbayes/archive/v1.0.0-release.zip
-unzip v1.0.0-release.zip
-cd revbayes-1.0.0-release/projects/cmake/
+git clone https://github.com/revbayes/revbayes.git revbayes-master
+cd revbayes-master/projects/cmake/
 ./build.sh
 sudo mv rb /usr/local/bin/
 ## Archivos de corrida
