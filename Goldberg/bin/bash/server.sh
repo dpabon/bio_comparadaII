@@ -10,6 +10,7 @@ echo 'Compiladores instalados'
 ## Programas de utilidad
 sudo apt-get install git mpich unzip vim libboost-all-dev libboost-date-time1.58.0 libboost-filesystem1.58.0 libboost-iostreams1.58.0 libboost-python1.58.0 libboost-serialization1.58.0 libboost-system1.58.0 libboost-thread1.58.0 libboost-atomic-dev libboost-atomic1.58.0 libboost-chrono-dev libboost-chrono1.58.0 libboost-thread-dev libboost-dev libboost1.58-dev
 
+sudo reboot
 ### Instalando revbayes 1.0.0
 git clone https://github.com/revbayes/revbayes.git revbayes-master
 cd revbayes-master/projects/cmake/
