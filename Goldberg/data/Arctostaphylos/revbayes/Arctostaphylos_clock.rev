@@ -78,7 +78,7 @@ moves[++mvi] = mvSlide(fossil_rate,delta=1,tune=true,weight=1)
 sampling_prob <- ntax / 60
 
 ## the Birth-death distribution ##
-psi ~ dnFBDP(rootAge=root_time, lambda=speciation, mu=extinction, psi=fossil_rate, rho=sampling_prob, condition="survival", taxa=taxa)
+psi ~ dnFBDP(startAge=root_time, lambda=speciation, mu=extinction, psi=fossil_rate, rho=sampling_prob, condition="survival", taxa=taxa, startCondition="root")
 
 
 # all moves are sliding proposals but you could use scaling proposals for the rates too
@@ -111,18 +111,18 @@ mymodel = model(seq)
 
 ## Monitores
 
-monitors[++mni] = mnModel(filename="output_arc/Arctostaphylos_K80.log", printgen=100)
-monitors[++mni] = mnFile(filename="output_arc/Arctostaphylos_K80.trees", printgen=100, separator = TAB, psi)
-monitors[++mni] = mnScreen(printgen=100, seq_clock_rate, root_time)
+monitors[++mni] = mnModel(filename="output_arc/Arctostaphylos_K80.log", printgen=400)
+monitors[++mni] = mnFile(filename="output_arc/Arctostaphylos_K80.trees", printgen=400, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=400, seq_clock_rate, root_time)
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
 mymcmc.run(generations=2000000)
 
-treetrace = readTreeTrace("output_arc/Arctostaphylos_K80.trees", treetype="clock")
+#treetrace = readTreeTrace("output_arc/Arctostaphylos_K80.trees", treetype="clock")
 
-map_tree = mapTree(treetrace,"output_arc/Arctostaphylos_K80_MAP.tree")
+#map_tree = mapTree(treetrace,"output_arc/Arctostaphylos_K80_MAP.tree")
 
 # exit
 quit()
