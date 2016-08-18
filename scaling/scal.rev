@@ -1,0 +1,128 @@
+## Reconstruccion filogenetica de Arctostaphylos incluyendo reloj molecular
+
+## datos
+datos <- readDiscreteCharacterData("/home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Arctostaphylos/NEXUS/Arctostaphylos.nex")
+
+## Numero de taxa
+ntax <- datos.ntaxa()
+
+## taxa
+
+taxa <- datos.taxa()
+
+# numero de ramas
+
+n_branches <- 2 * ntax - 3
+
+# set my move index
+mvi = 0
+mni = 0
+
+## Modelo de substitución K80 + G
+
+#K80 (Es necesario el parametros kappa= tasa de transicion transversion. El cual fue extraido de la salida de jmodeltest
+# Linea 230)
+
+# kappa = 2.5499 (ti/tv=1.2750)
+
+kappa ~ dnLnorm(2.5499, 1.2750)
+
+moves[++mvi] = mvScale(kappa)
+
+Q := fnK80(kappa)
+
+# Gamma
+
+# segun el manual de revbayes
+# alpha_prior_mean <- 5.0
+# alpha_prior_sd <- 0.587405
+# alpha ~ dnLognormal( alpha_prior_mean, alpha_prior_sd )
+
+#alphaprior
+# gamma shape obtenido de jmodeltest 0.1300 linea 1312
+
+shape_prior <- 0.1300
+prior_sd <-0.5
+shape  ~ dnLognormal(shape_prior, prior_sd)
+
+# inicio nodo deterministico
+gamma_rates := fnDiscretizeGamma( shape, 1/shape, 4 )
+
+# Escala del movimiento del parametro
+moves[++mvi] = mvScale(shape, weight=2.0)
+
+##############
+# Tree model #
+##############
+
+# Specify a prior on the diversification and turnover rate
+diversification ~ dnUniform(0,10)
+diversification.setValue(0.01)
+turnover ~ dnUniform(0,10)
+turnover.setValue(0.01)
+
+# now transform the diversification and turnover rates into speciation and extinction rates
+speciation := diversification + turnover
+moves[++mvi] = mvSlide(diversification,delta=1,tune=true,weight=1)
+extinction := turnover
+moves[++mvi] = mvSlide(turnover,delta=1,tune=true,weight=1)
+
+### process time ###
+## Uniform prior on process time
+root_time ~ dnUnif(23.03, 33.10)
+moves[++mvi] = mvSlide(root_time,delta=1,tune=true,weight=1)
+## The sampling-through-time parameter
+fossil_rate ~ dnUniform(0,10)
+moves[++mvi] = mvSlide(fossil_rate,delta=1,tune=true,weight=1)
+## The probability of sampling at the present (rho)
+sampling_prob <- ntax / 60
+
+## the Birth-death distribution ##
+psi ~ dnFBDP(startAge=root_time, lambda=speciation, mu=extinction, psi=fossil_rate, rho=sampling_prob, condition="survival", taxa=taxa, startCondition="root")
+
+
+# all moves are sliding proposals but you could use scaling proposals for the rates too
+
+moves[++mvi] = mvNarrow(psi, weight=5.0)
+moves[++mvi] = mvNNI(psi, weight=1.0)
+moves[++mvi] = mvFNPR(psi, weight=3.0)
+moves[++mvi] = mvSubtreeScale(psi, weight=3.0)
+moves[++mvi] = mvNodeTimeSlideUniform(psi, weight=15.0)
+
+#moves[++mvi] = mvCollapseExpandFossilBranch(psi,process_time,weight=10.0)
+
+
+###################
+# Molecular clock #
+###################
+
+### we use a uniform prior on the log-transform clock rate
+log_seq_clock_rate ~ dnUniform(-6,1)
+moves[++mvi] = mvSlide(log_seq_clock_rate, weight=2.0)
+seq_clock_rate := 10^log_seq_clock_rate
+
+## Todo junto
+
+seq ~ dnPhyloCTMC(tree=psi,branchRates=seq_clock_rate,siteRates=gamma_rates, Q=Q, type="DNA")
+
+seq.clamp(datos)
+
+mymodel = model(seq)
+
+## Monitores
+
+monitors[++mni] = mnModel(filename="output_arc/Arctostaphylos_K80.log", printgen=200)
+monitors[++mni] = mnFile(filename="output_arc/Arctostaphylos_K80.trees", printgen=200, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=200, seq_clock_rate, root_time)
+
+## MCMC
+mymcmc = mcmc(mymodel, monitors, moves)
+
+mymcmc.run(generations=4000000)
+
+treetrace = readTreeTrace("output_arc/Arctostaphylos_K80.trees", treetype="clock")
+
+map_tree = mapTree(treetrace,"output_arc/Arctostaphylos_K80_MAP.tree")
+
+# exit
+quit()
