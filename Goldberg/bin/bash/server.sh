@@ -25,6 +25,6 @@ cd results/
 
 nohup mpirun -np 4 rb-mpi /home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Arctostaphylos/revbayes/Arctostaphylos_clock.rev &
 
-nohup mpirun -np 4 rb-mpi /home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus/revbayes/Ceanothus_clock.rev &
+#nohup mpirun -np 4 rb-mpi /home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus/revbayes/Ceanothus_clock.rev &
 
 echo "Arctostaphylos y Ceanothus corriendo vuelva mas tarde"
