@@ -40,4 +40,15 @@ freq_prior_gtr <- v( 0.2532,0.2903,0.2470,0.2095)
 pi_gtr ~ dnDirichlet(freq_prior_gtr)
 moves[++mvi] = mvSimplexElementScale(pi_gtr, weight=2)
 
-# Frecuencias estacionarias
+Q[2] := fnGTR(er_gtr, pi_gtr)
+
+# Gamma
+shape_prior <-  0.2140
+prior_sd <-0.5
+shape  ~ dnLognormal(shape_prior, prior_sd)
+
+# inicio nodo deterministico
+gamma_rates := fnDiscretizeGamma( shape, 1/shape, 4 )
+
+# Escala del movimiento del parametro
+moves[++mvi] = mvScale(shape, weight=2.0)
