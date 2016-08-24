@@ -19,25 +19,36 @@ taxa <- data[1].taxa()
 mvi = 0
 mni = 0
 
-# ITS
+# ITS HKY
+
+kappa ~ dnLnorm(2.8994, 1.4853)
+moves[++mvi] = mvScale(kappa)
+
+freq_prior <- v(0.1924,0.2767,0.2462,0.2846)
+pi_hky ~ dnDirichlet(freq_prior)
+moves[++mvi] = mvSimplexElementScale(pi_hky, weight=2)
+
+Q[1] := fnHKY(kappa, pi_hky)
+
+
+
 # GTR + G
 
-for(i in 1:num_part){ 
-	er_prior[i] <- v(1,1,1,1,1,1) 
-	er[i] ~ dnDirichlet(er_prior[i]) 
+for(i in 1:num_part){
+	er_prior[i] <- v(1,1,1,1,1,1)
+	er[i] ~ dnDirichlet(er_prior[i])
 	moves[++mvi] = mvBetaSimplex(er[i], alpha=10, tune=true, weight=3)
 }
 
-# Frecuencias estacionarias 
+# Frecuencias estacionarias
 
-for(i in 1:num_part){ 
-	pi_prior[i] <- v(1,1,1,1) 
-	pi[i] ~ dnDirichlet(pi_prior[i]) 
+for(i in 1:num_part){
+	pi_prior[i] <- v(1,1,1,1)
+	pi[i] ~ dnDirichlet(pi_prior[i])
 	moves[++mvi] = mvBetaSimplex(pi[i], alpha=10, tune=true, weight=2)
 }
 
 # Q model
-for (i in 1:n_data_subsets) { 
+for (i in 1:n_data_subsets) {
 	Q[i] := fnGTR(er[i],pi[i])
 }
-
