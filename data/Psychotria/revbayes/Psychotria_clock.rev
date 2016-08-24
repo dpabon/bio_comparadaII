@@ -1,0 +1,43 @@
+## Analisis particionado de psychotria
+
+#Nombre de los datos
+filenames <- v("data/psychotria_its.nex", "data/psychotria_ets.nex")
+
+# Numero de partiones
+num_part <- filenames.size()
+
+# cargando datos
+
+for(i in 1:num_part){
+	datos[i] = readDiscreteCharacterData(filenames[i])
+}
+
+# variables de utilidad
+
+taxa <- data[1].taxa()
+
+mvi = 0
+mni = 0
+
+# ITS
+# GTR + G
+
+for(i in 1:num_part){ 
+	er_prior[i] <- v(1,1,1,1,1,1) 
+	er[i] ~ dnDirichlet(er_prior[i]) 
+	moves[++mvi] = mvBetaSimplex(er[i], alpha=10, tune=true, weight=3)
+}
+
+# Frecuencias estacionarias 
+
+for(i in 1:num_part){ 
+	pi_prior[i] <- v(1,1,1,1) 
+	pi[i] ~ dnDirichlet(pi_prior[i]) 
+	moves[++mvi] = mvBetaSimplex(pi[i], alpha=10, tune=true, weight=2)
+}
+
+# Q model
+for (i in 1:n_data_subsets) { 
+	Q[i] := fnGTR(er[i],pi[i])
+}
+
