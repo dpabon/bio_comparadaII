@@ -11,7 +11,7 @@ echo 'Compiladores instalados'
 sudo apt-get install git mpich unzip vim libboost-all-dev libboost-date-time1.58.0 libboost-filesystem1.58.0 libboost-iostreams1.58.0 libboost-python1.58.0 libboost-serialization1.58.0 libboost-system1.58.0 libboost-thread1.58.0 libboost-atomic-dev libboost-atomic1.58.0 libboost-chrono-dev libboost-chrono1.58.0 libboost-thread-dev libboost-dev libboost1.58-dev
 
 sudo reboot
-### Instalando revbayes 1.0.0
+### Instalando revbayes 1.0.1
 git clone https://github.com/revbayes/revbayes.git revbayes-master
 cd revbayes-master/projects/cmake/
 ./build.sh -mpi true
@@ -24,7 +24,7 @@ git clone https://github.com/dpabon/bio_comparadaII
 mkdir results/
 cd results/
 
-nohup mpirun -np 4 rb-mpi /home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Arctostaphylos/revbayes/Arctostaphylos_clock.rev &
+nohup mpirun -np 4 rb-mpi /home/dane/MEGAsync/bio_comparadaII/data/Arctostaphylos/revbayes/Arctostaphylos_clock.rev &
 
 #nohup mpirun -np 4 rb-mpi /home/dane/MEGAsync/bio_comparadaII/Goldberg/data/Ceanothus/revbayes/Ceanothus_clock.rev &
 
