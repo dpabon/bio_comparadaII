@@ -10,9 +10,6 @@ ntax <- datos.ntaxa()
 
 taxa <- datos.taxa()
 
-# numero de ramas
-
-n_branches <- 2 * ntax - 3
 
 # set my move index
 mvi = 0
