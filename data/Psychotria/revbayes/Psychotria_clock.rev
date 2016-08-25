@@ -1,7 +1,7 @@
 ## Analisis particionado de psychotria
 
 #Nombre de los datos
-filenames <- v("data/psychotria_its.nex", "data/psychotria_ets.nex")
+filenames <- v("/home/dane/MEGAsync/bio_comparadaII/data/Psychotria/NEXUS/psychotria_its.nex", "/home/dane/MEGAsync/bio_comparadaII/data/Psychotria/NEXUS/psychotria_ets.nex")
 
 # Numero de partiones
 num_part <- filenames.size()
@@ -9,12 +9,16 @@ num_part <- filenames.size()
 # cargando datos
 
 for(i in 1:num_part){
-	datos[i] = readDiscreteCharacterData(filenames[i])
+	data[i] = readDiscreteCharacterData(filenames[i])
 }
 
 # variables de utilidad
 
 taxa <- data[1].taxa()
+
+# Numero de taxa
+ntax <- data[1].ntaxa()
+
 
 mvi = 0
 mni = 0
@@ -90,19 +94,25 @@ moves[++mvi] = mvSubtreeScale(psi, weight=3.0)
 moves[++mvi] = mvNodeTimeSlideUniform(psi, weight=15.0)
 
 
+## Reloj Global
+
+log_global_clock_rate ~ dnUniform(-6,1)
+moves[++mvi] = mvSlide(log_global_clock_rate, weight=2.0)
+global_clock_rate := 10^log_global_clock_rate
+
 ## Reloj Molecular por particion
 
-part_rate_mult ~ dnDirichlet( rep(1.0, n_data_subsets) )
-moves[++mvi] = mvBetaSimplex(part_rate_mult, alpha=1.0, tune=true, weight=n_data_subsets)
+part_rate_mult ~ dnDirichlet( rep(1.0, num_part) )
+moves[++mvi] = mvBetaSimplex(part_rate_mult, alpha=1.0, tune=true, weight=num_part)
 moves[++mvi] = mvDirichletSimplex(part_rate_mult, alpha=1.0, tune=true, weight=2.0)
 
-for (i in 1:n_data_subsets) {
-	part_rate[i] := part_rate_mult[i] * n_data_subsets * global_clock_rate
+for (i in 1:num_part) {
+	part_rate[i] := part_rate_mult[i] * num_part * global_clock_rate
 }
 
 ## Todo junto
 
-for (i in 1:n_data_subsets) {
+for (i in 1:num_part) {
 	phyloSeq[i] ~ dnPhyloCTMC(tree=psi, Q=Q[i], branchRates=part_rate_mult[i], siteRates= gamma_rates, type="DNA")
 	phyloSeq[i].clamp(data[i])
 }
@@ -111,15 +121,15 @@ mymodel= model(phyloSeq)
 
 ## Monitores
 
-monitors[++mni] = mnModel(filename="output_psy/Psychotria.log", printgen=400)
-monitors[++mni] = mnFile(filename="output_psy/Psychotria.trees", printgen=400, separator = TAB, psi)
-monitors[++mni] = mnScreen(printgen=400, seq_clock_rate, root_time)
+monitors[++mni] = mnModel(filename="output_psy/Psychotria.log", printgen=100)
+monitors[++mni] = mnFile(filename="output_psy/Psychotria.trees", printgen=100, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=100, global_clock_rate, root_time)
 
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
-mymcmc.run(generations=2000000)
+mymcmc.run(generations=10000)
 
 treetrace = readTreeTrace("output_psy/Psychotria.trees", treetype="clock")
 
