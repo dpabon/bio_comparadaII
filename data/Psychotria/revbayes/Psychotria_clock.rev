@@ -109,11 +109,21 @@ for (i in 1:n_data_subsets) {
 
 mymodel= model(phyloSeq)
 
+## Monitores
 
-aazz
+monitors[++mni] = mnModel(filename="output_psy/Psychotria.log", printgen=400)
+monitors[++mni] = mnFile(filename="output_psy/Psychotria.trees", printgen=400, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=400, seq_clock_rate, root_time)
 
 
-K-.-OphyloSeq[i].clamp(data[i])-Ñ---------------------------------------------------------------------------------------------------------P¿Ñ-ED3-3EWWWWWWSWWWWWWWWWWWWWWWWWWWWWWWW-1+]<<saaaadd
-		
-		}S1	K8, WL {,.{PÑ- SSXSXTSSDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdddddddddddddddddddddddddddddddddddddddddddddddddde-233.}a}-{ÑG545TR A,P, 2}
-wqd.S}}
+## MCMC
+mymcmc = mcmc(mymodel, monitors, moves)
+
+mymcmc.run(generations=2000000)
+
+treetrace = readTreeTrace("output_psy/Psychotria.trees", treetype="clock")
+
+map_tree = mapTree(treetrace,"output_psy/Psychotria_MAP.tree")
+
+# exit
+quit()
