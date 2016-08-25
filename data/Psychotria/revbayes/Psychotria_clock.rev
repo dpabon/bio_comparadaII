@@ -121,15 +121,15 @@ mymodel= model(phyloSeq)
 
 ## Monitores
 
-monitors[++mni] = mnModel(filename="output_psy/Psychotria.log", printgen=100)
-monitors[++mni] = mnFile(filename="output_psy/Psychotria.trees", printgen=100, separator = TAB, psi)
-monitors[++mni] = mnScreen(printgen=100, global_clock_rate, root_time)
+monitors[++mni] = mnModel(filename="output_psy/Psychotria.log", printgen=400)
+monitors[++mni] = mnFile(filename="output_psy/Psychotria.trees", printgen=400, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=400, global_clock_rate, root_time)
 
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
-mymcmc.run(generations=10000)
+mymcmc.run(generations=5000000)
 
 treetrace = readTreeTrace("output_psy/Psychotria.trees", treetype="clock")
 

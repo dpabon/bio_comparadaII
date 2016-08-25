@@ -115,7 +115,7 @@ monitors[++mni] = mnScreen(printgen=400, seq_clock_rate, root_time)
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
-mymcmc.run(generations=2000000)
+mymcmc.run(generations=5000000)
 
 #treetrace = readTreeTrace("output_cean/Ceanothus_GTR_G.trees", treetype="non-clock")
 
