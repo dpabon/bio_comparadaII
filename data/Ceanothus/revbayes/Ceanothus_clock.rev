@@ -117,9 +117,9 @@ mymcmc = mcmc(mymodel, monitors, moves)
 
 mymcmc.run(generations=5000000)
 
-#treetrace = readTreeTrace("output_cean/Ceanothus_GTR_G.trees", treetype="non-clock")
+treetrace = readTreeTrace("output_cean/Ceanothus_GTR_G.trees", treetype="non-clock")
 
-#map_tree = mapTree(treetrace,"output_cean/Ceanothus_GTR_G_MAP.tree")
+map_tree = mapTree(treetrace,"output_cean/Ceanothus_GTR_G_MAP.tree")
 
 # exit
 quit()
