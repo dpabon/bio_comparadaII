@@ -39,7 +39,7 @@ Q := fnGTR(er,pi)
 #
 
 alpha_prior <- 0.2190
-sd_prior <- 0.5
+sd_prior <- 1
 alpha  ~ dnLognormal(alpha_prior, sd_prior)
 
 # inicio nodo deterministico
@@ -53,9 +53,9 @@ moves[++mvi] = mvScale(alpha, weight=2.0)
 ##############
 
 # Specify a prior on the diversification and turnover rate
-diversification ~ dnUniform(0,10)
+diversification ~ dnLognormal(0.0216,0.0207)
 diversification.setValue(0.01)
-turnover ~ dnUniform(0,10)
+turnover ~ dnLognormal(0.6288,0.2132)
 turnover.setValue(0.01)
 
 # now transform the diversification and turnover rates into speciation and extinction rates
@@ -108,14 +108,14 @@ mymodel = model(seq)
 
 ## Monitores
 
-monitors[++mni] = mnModel(filename="output_cean/Ceanothus_GTR_G.log", printgen=400)
-monitors[++mni] = mnFile(filename="output_cean/Ceanothus_GTR_G.trees", printgen=400, psi)
-monitors[++mni] = mnScreen(printgen=400, seq_clock_rate, root_time)
+monitors[++mni] = mnModel(filename="output_cean/Ceanothus_GTR_G.log", printgen=600)
+monitors[++mni] = mnFile(filename="output_cean/Ceanothus_GTR_G.trees", printgen=600, psi)
+monitors[++mni] = mnScreen(printgen=600, seq_clock_rate, root_time)
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
-mymcmc.run(generations=5000000)
+mymcmc.run(generations=10000000)
 
 treetrace = readTreeTrace("output_cean/Ceanothus_GTR_G.trees", treetype="non-clock")
 
