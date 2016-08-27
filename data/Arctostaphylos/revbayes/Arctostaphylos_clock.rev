@@ -39,7 +39,7 @@ Q := fnK80(kappa)
 # gamma shape obtenido de jmodeltest 0.1300 linea 1312
 
 shape_prior <- 0.1300
-prior_sd <-0.5
+prior_sd <-1
 shape  ~ dnLognormal(shape_prior, prior_sd)
 
 # inicio nodo deterministico
@@ -53,9 +53,9 @@ moves[++mvi] = mvScale(shape, weight=2.0)
 ##############
 
 # Specify a prior on the diversification and turnover rate
-diversification ~ dnUniform(0,10)
+diversification ~ dnLognormal(0.0603,0.0428)
 diversification.setValue(0.01)
-turnover ~ dnUniform(0,10)
+turnover ~ dnLognormal(0.3942,0.2218)
 turnover.setValue(0.01)
 
 # now transform the diversification and turnover rates into speciation and extinction rates
@@ -108,14 +108,14 @@ mymodel = model(seq)
 
 ## Monitores
 
-monitors[++mni] = mnModel(filename="output_arc/Arctostaphylos_K80.log", printgen=400)
-monitors[++mni] = mnFile(filename="output_arc/Arctostaphylos_K80.trees", printgen=400, separator = TAB, psi)
-monitors[++mni] = mnScreen(printgen=400, seq_clock_rate, root_time)
+monitors[++mni] = mnModel(filename="output_arc/Arctostaphylos_K80.log", printgen=600)
+monitors[++mni] = mnFile(filename="output_arc/Arctostaphylos_K80.trees", printgen=600, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=600, seq_clock_rate, root_time)
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
-mymcmc.run(generations=5000000)
+mymcmc.run(generations=10000000)
 
 treetrace = readTreeTrace("output_arc/Arctostaphylos_K80.trees", treetype="clock")
 
