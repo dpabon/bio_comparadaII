@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Script prioris flat Psychotria
+## Script prioris Psychotria
 
 echo 'Instalando compiladores...'
 sudo apt-get install build-essential
@@ -22,7 +22,7 @@ cd ~
 mkdir MEGAsync/
 cd MEGAsync/
 git clone https://github.com/dpabon/bio_comparadaII
-mkdir flat
-cd flat/
+mkdir serio
+cd serio/
 
 nohup mpirun -np 4 rb-mpi /home/dane/MEGAsync/bio_comparadaII/data/Psychotria/revbayes/Psychotria_clock.rev &
