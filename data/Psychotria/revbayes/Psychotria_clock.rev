@@ -49,7 +49,7 @@ Q[2] := fnGTR(er_gtr, pi_gtr)
 
 # Gamma
 shape_prior <-  0.2140
-prior_sd <-0.5
+prior_sd <-1
 shape  ~ dnLognormal(shape_prior, prior_sd)
 
 # inicio nodo deterministico
@@ -61,9 +61,9 @@ moves[++mvi] = mvScale(shape, weight=2.0)
 # Modelo del arbol
 
 # Specify a prior on the diversification and turnover rate
-diversification ~ dnUniform(0,10)
+diversification ~ dnLognormal(0.0604,0.0391)
 diversification.setValue(0.01)
-turnover ~ dnUniform(0,10)
+turnover ~ dnLognormal(7.874,1.5852)
 turnover.setValue(0.01)
 
 # now transform the diversification and turnover rates into speciation and extinction rates
@@ -122,15 +122,15 @@ mymodel= model(phyloSeq)
 
 ## Monitores
 
-monitors[++mni] = mnModel(filename="output_psy/Psychotria.log", printgen=400)
-monitors[++mni] = mnFile(filename="output_psy/Psychotria.trees", printgen=400, separator = TAB, psi)
-monitors[++mni] = mnScreen(printgen=400, global_clock_rate, root_time)
+monitors[++mni] = mnModel(filename="output_psy/Psychotria.log", printgen=600)
+monitors[++mni] = mnFile(filename="output_psy/Psychotria.trees", printgen=600, separator = TAB, psi)
+monitors[++mni] = mnScreen(printgen=600, global_clock_rate, root_time)
 
 
 ## MCMC
 mymcmc = mcmc(mymodel, monitors, moves)
 
-mymcmc.run(generations=5000000)
+mymcmc.run(generations=10000000)
 
 treetrace = readTreeTrace("output_psy/Psychotria.trees", treetype="clock")
 
