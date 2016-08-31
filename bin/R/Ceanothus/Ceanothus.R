@@ -34,14 +34,16 @@ calc_loglike_sp = compiler::cmpfun(calc_loglike_sp_prebyte)    # crucial to fix 
 calc_independent_likelihoods_on_each_branch = compiler::cmpfun(calc_independent_likelihoods_on_each_branch_prebyte)
 
 ## Cambiando directorio de salida
-setwd("~/MEGAsync/biocomparadaII/result/Ceanothus/Biogeo/")
+setwd("~/MEGAsync/bio_comparadaII/result/Ceanothus/Biogeo")
 #######################################################
 # SETUP: Arbol y Datos geograficos
 #######################################################
 # Example files are given below. To run your own data,
 # make the below lines point to your own files, e.g.
- trfn = "~/MEGAsync/biocomparadaII/result/final/output/Ceanothus.new"
- geogfn = "~/MEGAsync/biocomparadaII/result/final/Ceanothus_geo.dat"
+trfn = "~/MEGAsync/bio_comparadaII/result/Ceanothus/final/output/Ceanothus.new"
+tr = read.tree(trfn)
+geogfn = "~/MEGAsync/bio_comparadaII/result/Ceanothus/final/Ceanothus_geo.dat"
+tipranges = getranges_from_LagrangePHYLIP(lgdata_fn=geogfn)
 # Set the maximum number of areas any species may occupy; this cannot be larger
 # than the number of areas you set up, but it can be smaller.
 max_range_size = 3
