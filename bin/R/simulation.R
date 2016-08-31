@@ -75,8 +75,8 @@ for(i in 1:50){
 ## Recuerde ejecutar sed -i '2d' geo_*
 ## Para eliminar la segunda fila de los archivos
 
-
 ## Escenario III
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E3")
 for(i in 1:50){
   sA <- runif(1, min = 0.8, max = 1)
   sB <- sB
@@ -114,6 +114,7 @@ for(i in 1:50){
 ## Para eliminar la segunda fila de los archivos
 
 ## Escenario IV
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E4")
 for(i in 1:50){
   sA <- 0.5
   sB <- 0.5
@@ -151,6 +152,7 @@ for(i in 1:50){
 ## Para eliminar la segunda fila de los archivos
 
 ## Escenario V
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E5")
 for(i in 1:50){
   sA <- 0.5
   sB <- 0.5
@@ -185,6 +187,7 @@ for(i in 1:50){
 }
 
 ## Escenario VI
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E6")
 for(i in 1:50){
   sA <- 0.5
   sB <- 0.5
@@ -219,6 +222,7 @@ for(i in 1:50){
 }
 
 ## Escenario VII
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E7")
 for(i in 1:50){
   sA <- 0.5
   sB <- 0.5
@@ -253,6 +257,7 @@ for(i in 1:50){
 }
 
 ## Escenario VIII
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E8")
 for(i in 1:50){
   sA <- 0.5
   sB <- 0.5
@@ -287,6 +292,7 @@ for(i in 1:50){
 }
 
 ## Escenario IX
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E9")
 for(i in 1:50){
   sA <- 0.5
   sB <- 0.5
