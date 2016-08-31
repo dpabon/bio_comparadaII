@@ -3,7 +3,7 @@ library(diversitree)
 ## Escenarios de simulación
 ## Escenario I
 # especiación extincion igual dispersion igual
-setwd("/tmp/")
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E1")
 for(i in 1:50){
   sA <- runif(1, min = 0.4, max = 0.7)
   sB <- sA
@@ -37,6 +37,7 @@ for(i in 1:50){
   }
 }
 
+setwd("~/MEGAsync/bio_comparadaII/data/simulations/E2")
 ## Escenario II 
 for(i in 1:50){
   sA <- runif(1, min = 0.4, max = 0.7)
