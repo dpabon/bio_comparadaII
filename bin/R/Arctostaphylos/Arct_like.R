@@ -1,3 +1,6 @@
+## Tomado y modifcado de:
+## http://phylo.wikidot.com/biogeobears#script
+
 library(optimx)
 library(FD)
 library(snow)

@@ -1,3 +1,5 @@
+## Tomado y modifcado de:
+## http://phylo.wikidot.com/biogeobears#script
 
 ## Funcion para el Calculo de AIC AICc y LRT
 
