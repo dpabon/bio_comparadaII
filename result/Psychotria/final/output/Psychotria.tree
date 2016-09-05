@@ -1,0 +1,30 @@
+#NEXUS
+
+	Begin taxa;
+	Dimensions ntax=19;
+	Taxlabels
+		P_fauriei2
+		P_grandiflora_Kal2
+		P_greenwelliae07
+		P_greenwelliae907
+		P_hathewayi_1
+		P_hawaiiensis_Makaopuhi
+		P_hawaiiensis_WaikamoiL1
+		P_hexandra_K1
+		P_hexandra_M
+		P_hexandra_Oahu
+		P_hobdyi_Kuia
+		P_kaduana_HawaiiLoa
+		P_kaduana_PuuKukuiAS
+		P_mariniana_Kokee2
+		P_mariniana_MauiNui
+		P_mariniana_Oahu
+		P_mauiensis_Eke
+		P_mauiensis_PepeAS
+		P_wawraeDL7428
+		;
+End;
+
+Begin trees;
+tree TREE1 = [&R]((((((((P_fauriei2[&index=18]:3.045718,P_hathewayi_1[&index=17]:3.045718)[&index=19,posterior=0.984561,ccp=0.997931,height_95%_HPD={1.83996,4.35581}]:0.902167,(P_hawaiiensis_WaikamoiL1[&index=16]:2.843441,P_mauiensis_Eke[&index=15]:2.843441)[&index=20,posterior=0.999920,ccp=0.997931,height_95%_HPD={1.86873,4.27756}]:1.104445)[&index=21,posterior=0.541157,ccp=0.728711,height_95%_HPD={2.96224,5.39393}]:0.300133,(P_kaduana_PuuKukuiAS[&index=14]:2.693723,P_mauiensis_PepeAS[&index=13]:2.693723)[&index=22,posterior=0.757779,ccp=0.728711,height_95%_HPD={0.914973,4.35896}]:1.554296)[&index=23,posterior=0.424606,ccp=0.303217,height_95%_HPD={3.19027,5.57858}]:0.472363,P_kaduana_HawaiiLoa[&index=12]:4.720381)[&index=24,posterior=0.713623,ccp=0.713623,height_95%_HPD={3.41545,5.93258}]:0.623649,(P_greenwelliae07[&index=11]:0.563130,P_greenwelliae907[&index=10]:0.563130)[&index=25,posterior=1.000000,ccp=0.713623,height_95%_HPD={0.000211,1.5752}]:4.780900)[&index=26,posterior=1.000000,ccp=1.000000,height_95%_HPD={4.03986,7.06818}]:5.051403,((((P_hawaiiensis_Makaopuhi[&index=9]:2.561985,P_mariniana_MauiNui[&index=8]:2.561985)[&index=27,posterior=0.999840,ccp=1.000000,height_95%_HPD={1.36762,3.91093}]:1.328359,P_mariniana_Oahu[&index=7]:3.890344)[&index=28,posterior=0.514679,ccp=0.515154,height_95%_HPD={2.59304,5.26495}]:0.519214,P_mariniana_Kokee2[&index=6]:4.409558)[&index=29,posterior=0.995040,ccp=0.995040,height_95%_HPD={2.9379,5.83524}]:1.590888,P_wawraeDL7428[&index=5]:6.000446)[&index=30,posterior=1.000000,ccp=1.000000,height_95%_HPD={4.12854,7.87945}]:4.394987)[&index=31,posterior=1.000000,ccp=1.000000,height_95%_HPD={8.05169,13.3902}]:5.052962,((P_hexandra_K1[&index=4]:4.050499,P_hexandra_Oahu[&index=3]:4.050499)[&index=32,posterior=0.800576,ccp=0.800576,height_95%_HPD={2.20744,6.15168}]:2.550724,P_hexandra_M[&index=2]:6.601223)[&index=33,posterior=1.000000,ccp=1.000000,height_95%_HPD={4.32612,8.77012}]:8.847172)[&index=34,posterior=0.992481,ccp=0.992481,height_95%_HPD={11.8094,19.3346}]:13.167395,(P_grandiflora_Kal2[&index=1]:11.414321,P_hobdyi_Kuia[&index=0]:11.414321)[&index=35,posterior=1.000000,ccp=0.992481,height_95%_HPD={7.48115,15.2943}]:17.201469)[&index=36,posterior=1.000000,ccp=1.000000,height_95%_HPD={28.3,29.2423}]:0.000000;
+End;

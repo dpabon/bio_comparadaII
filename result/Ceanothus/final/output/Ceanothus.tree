@@ -1,0 +1,61 @@
+#NEXUS
+
+	Begin taxa;
+	Dimensions ntax=50;
+	Taxlabels
+		Ceanothusamericanus
+		Ceanothusarboreus
+		Ceanothusbuxifolius
+		Ceanothuscaeruleus
+		Ceanothusconfusus
+		Ceanothuscordulatus
+		Ceanothuscrassifolius
+		Ceanothuscuneatus
+		Ceanothuscyaneus
+		Ceanothusdentatus
+		Ceanothusdivergens
+		Ceanothusdiversifolius
+		Ceanothusfendleri
+		Ceanothusferrisiae
+		Ceanothusfoliosus
+		Ceanothusfresnensis
+		Ceanothusgloriosus
+		Ceanothusgreggii
+		Ceanothusgriseus
+		Ceanothushearstiorum
+		Ceanothusherbaceus
+		Ceanothusimpressus
+		Ceanothusincanus
+		Ceanothusintegerrimus
+		Ceanothusjepsonii
+		Ceanothuslanuginosus
+		Ceanothuslemmonii
+		Ceanothusleucodermis
+		Ceanothusmaritimus
+		Ceanothusmartinii
+		Ceanothusmasonii
+		Ceanothusmegacarpus
+		Ceanothusochraceus
+		Ceanothusoliganthus
+		Ceanothusophiochilus
+		Ceanothuspalmeri
+		Ceanothuspapillosus
+		Ceanothusparryi
+		Ceanothusparvifolius
+		Ceanothuspinetorum
+		Ceanothusprostratus
+		Ceanothuspumilus
+		Ceanothuspurpureus
+		Ceanothussanguineus
+		Ceanothussonomensis
+		Ceanothusspinosus
+		Ceanothusthyrsiflorus
+		Ceanothustomentosus
+		Ceanothusvelutinus
+		Ceanothusverrucosus
+		;
+End;
+
+Begin trees;
+tree TREE1 = [&R](((((((((((((Ceanothusochraceus[&index=49,posterior=1.000000,ccp=1.000000]:0.342437,Ceanothuspapillosus[&index=48,posterior=1.000000,ccp=1.000000]:0.342437)[&index=50,posterior=0.043756,ccp=0.380952,height_95%_HPD={nan,0.572337}]:0.028354,Ceanothusthyrsiflorus[&index=47,posterior=1.000000,ccp=0.380952]:0.370791)[&index=51,posterior=0.005040,ccp=0.111111,height_95%_HPD={nan,0.475019}]:0.027711,Ceanothusfoliosus[&index=46,posterior=1.000000,ccp=0.111111]:0.398502)[&index=52,posterior=0.001440,ccp=1.000000,height_95%_HPD={nan,0.458586}]:0.271288,(Ceanothuscaeruleus[&index=45,posterior=1.000000,ccp=1.000000]:0.425111,Ceanothusspinosus[&index=44,posterior=1.000000,ccp=1.000000]:0.425111)[&index=53,posterior=0.041037,ccp=1.000000,height_95%_HPD={nan,0.533807}]:0.244680)[&index=54,posterior=0.000160,ccp=1.000000,height_95%_HPD={0.029491,nan}]:0.029491,((Ceanothusimpressus[&index=43,posterior=1.000000,ccp=1.000000]:0.192381,Ceanothusoliganthus[&index=42,posterior=1.000000,ccp=1.000000]:0.192381)[&index=55,posterior=0.208223,ccp=0.219756,height_95%_HPD={nan,0.371449}]:0.074777,Ceanothustomentosus[&index=41,posterior=1.000000,ccp=0.219756]:0.267158)[&index=56,posterior=0.817935,ccp=1.000000,height_95%_HPD={nan,0.823835}]:0.432124)[&index=57,posterior=0.000080,ccp=0.500000,height_95%_HPD={0.411375,0.411375}]:0.411375,(Ceanothuslemmonii[&index=40,posterior=1.000000,ccp=1.000000]:0.198001,Ceanothuspalmeri[&index=39,posterior=1.000000,ccp=1.000000]:0.198001)[&index=58,posterior=0.993041,ccp=0.500000,height_95%_HPD={nan,0.910631}]:0.912656)[&index=59,posterior=0.000160,ccp=0.004630,height_95%_HPD={0.200465,nan}]:0.200465,((((Ceanothusgriseus[&index=38,posterior=1.000000,ccp=1.000000]:0.125383,Ceanothushearstiorum[&index=37,posterior=1.000000,ccp=1.000000]:0.125383)[&index=60,posterior=0.101272,ccp=0.317073,height_95%_HPD={nan,0.647813}]:0.232446,Ceanothusparryi[&index=36,posterior=1.000000,ccp=0.317073]:0.357829)[&index=61,posterior=0.022958,ccp=0.120690,height_95%_HPD={nan,0.594057}]:0.236604,Ceanothusintegerrimus[&index=35,posterior=1.000000,ccp=0.120690]:0.594433)[&index=62,posterior=0.009279,ccp=0.272727,height_95%_HPD={nan,0.604753}]:0.239359,Ceanothusarboreus[&index=34,posterior=1.000000,ccp=0.272727]:0.833791)[&index=63,posterior=0.002640,ccp=0.004630,height_95%_HPD={nan,0.477331}]:0.477331)[&index=64,posterior=0.017279,ccp=0.018837,height_95%_HPD={nan,0.502176}]:0.391656,Ceanothusdentatus[&index=33,posterior=1.000000,ccp=0.018837]:1.702779)[&index=65,posterior=0.870570,ccp=0.874437,height_95%_HPD={nan,1.05529}]:0.637737,((Ceanothusleucodermis[&index=32,posterior=1.000000,ccp=1.000000]:0.115445,Ceanothusparvifolius[&index=31,posterior=1.000000,ccp=1.000000]:0.115445)[&index=66,posterior=0.865051,ccp=0.889370,height_95%_HPD={nan,0.927577}]:0.798769,Ceanothuscyaneus[&index=30,posterior=1.000000,ccp=0.889370]:0.914214)[&index=67,posterior=0.960243,ccp=0.874437,height_95%_HPD={nan,1.30244}]:1.426302)[&index=68,posterior=0.906567,ccp=0.901788,height_95%_HPD={nan,1.31863}]:0.443334,Ceanothusdiversifolius[&index=29,posterior=1.000000,ccp=0.901788]:2.783850)[&index=69,posterior=0.527798,ccp=0.610193,height_95%_HPD={nan,1.37577}]:0.571186,((((((Ceanothusbuxifolius[&index=28,posterior=1.000000,ccp=1.000000]:0.930644,Ceanothusincanus[&index=27,posterior=1.000000,ccp=1.000000]:0.930644)[&index=70,posterior=0.224702,ccp=0.528190,height_95%_HPD={nan,1.13319}]:0.240436,Ceanothusfendleri[&index=26,posterior=1.000000,ccp=0.528190]:1.171080)[&index=71,posterior=0.053916,ccp=0.305221,height_95%_HPD={nan,1.04387}]:0.558757,Ceanothuscordulatus[&index=25,posterior=1.000000,ccp=0.305221]:1.729837)[&index=72,posterior=0.019918,ccp=0.324074,height_95%_HPD={nan,1.01086}]:0.050839,Ceanothusvelutinus[&index=24,posterior=1.000000,ccp=0.324074]:1.780676)[&index=73,posterior=0.008639,ccp=0.104545,height_95%_HPD={nan,1.17294}]:0.029449,Ceanothussanguineus[&index=23,posterior=1.000000,ccp=0.104545]:1.810125)[&index=74,posterior=0.017599,ccp=0.041022,height_95%_HPD={nan,1.00714}]:0.093571,Ceanothusmartinii[&index=22,posterior=1.000000,ccp=0.041022]:1.903696)[&index=75,posterior=0.253500,ccp=0.610193,height_95%_HPD={nan,1.78071}]:1.451339)[&index=76,posterior=0.116151,ccp=0.086953,height_95%_HPD={nan,1.59977}]:2.342896,(Ceanothusamericanus[&index=21,posterior=1.000000,ccp=1.000000]:5.029920,Ceanothusherbaceus[&index=20,posterior=1.000000,ccp=1.000000]:5.029920)[&index=77,posterior=0.358451,ccp=0.086953,height_95%_HPD={nan,1.41347}]:0.668012)[&index=78,posterior=1.000000,ccp=1.000000,height_95%_HPD={nan,43.2228}]:40.627998,(((((((((Ceanothusconfusus[&index=19,posterior=1.000000,ccp=1.000000]:0.108462,Ceanothusdivergens[&index=18,posterior=1.000000,ccp=1.000000]:0.108462)[&index=79,posterior=0.194624,ccp=0.198386,height_95%_HPD={nan,0.285266}]:0.332008,Ceanothuspurpureus[&index=17,posterior=1.000000,ccp=0.198386]:0.440470)[&index=80,posterior=0.941925,ccp=0.779380,height_95%_HPD={nan,0.637683}]:0.707189,(Ceanothusprostratus[&index=16,posterior=1.000000,ccp=1.000000]:0.043481,Ceanothuspumilus[&index=15,posterior=1.000000,ccp=1.000000]:0.043481)[&index=81,posterior=0.402208,ccp=0.779380,height_95%_HPD={nan,1.02012}]:1.104178)[&index=82,posterior=0.488041,ccp=0.941542,height_95%_HPD={nan,0.947157}]:0.376505,(Ceanothusmegacarpus[&index=14,posterior=1.000000,ccp=1.000000]:0.883892,Ceanothusverrucosus[&index=13,posterior=1.000000,ccp=1.000000]:0.883892)[&index=83,posterior=0.999200,ccp=0.941542,height_95%_HPD={nan,1.12131}]:0.640273)[&index=84,posterior=0.128630,ccp=0.128326,height_95%_HPD={nan,0.441558}]:0.117433,Ceanothusjepsonii[&index=12,posterior=1.000000,ccp=0.128326]:1.641598)[&index=85,posterior=0.950004,ccp=0.675360,height_95%_HPD={nan,0.8206}]:0.161374,((((Ceanothusmaritimus[&index=11,posterior=1.000000,ccp=1.000000]:0.096561,Ceanothusmasonii[&index=10,posterior=1.000000,ccp=1.000000]:0.096561)[&index=86,posterior=0.220782,ccp=0.396081,height_95%_HPD={nan,0.907215}]:0.016183,Ceanothussonomensis[&index=9,posterior=1.000000,ccp=0.396081]:0.112744)[&index=87,posterior=0.134709,ccp=0.320312,height_95%_HPD={nan,0.985132}]:0.248351,Ceanothusgloriosus[&index=8,posterior=1.000000,ccp=0.320312]:0.361096)[&index=88,posterior=0.102392,ccp=0.114814,height_95%_HPD={nan,0.976993}]:0.447431,Ceanothuscuneatus[&index=7,posterior=1.000000,ccp=0.114814]:0.808527)[&index=89,posterior=0.657707,ccp=0.675360,height_95%_HPD={nan,1.43351}]:0.994445)[&index=90,posterior=0.932405,ccp=0.747450,height_95%_HPD={nan,1.9004}]:1.045000,(((Ceanothuscrassifolius[&index=6,posterior=1.000000,ccp=1.000000]:0.213269,Ceanothusophiochilus[&index=5,posterior=1.000000,ccp=1.000000]:0.213269)[&index=91,posterior=0.205824,ccp=0.084526,height_95%_HPD={nan,0.717164}]:0.341421,(Ceanothusferrisiae[&index=4,posterior=1.000000,ccp=1.000000]:0.466828,Ceanothusgreggii[&index=3,posterior=1.000000,ccp=1.000000]:0.466828)[&index=92,posterior=0.163587,ccp=0.084526,height_95%_HPD={nan,0.745061}]:0.087862)[&index=93,posterior=0.972882,ccp=0.966699,height_95%_HPD={nan,2.07968}]:0.599308,Ceanothusfresnensis[&index=2,posterior=1.000000,ccp=0.966699]:1.153998)[&index=94,posterior=0.732661,ccp=0.747450,height_95%_HPD={nan,2.61913}]:1.693974)[&index=95,posterior=0.682265,ccp=0.777876,height_95%_HPD={nan,2.30813}]:0.805699,Ceanothuspinetorum[&index=1,posterior=1.000000,ccp=0.777876]:3.653671)[&index=96,posterior=0.361571,ccp=0.361571,height_95%_HPD={nan,2.72549}]:1.801536,Ceanothuslanuginosus[&index=0,posterior=1.000000,ccp=0.361571]:5.455208)[&index=97,posterior=1.000000,ccp=1.000000,height_95%_HPD={nan,42.5492}]:40.870722)[&index=98,posterior=1.000000,ccp=1.000000,height_95%_HPD={nan,0}]:0.000000;
+End;

@@ -1,0 +1,49 @@
+#NEXUS
+
+	Begin taxa;
+	Dimensions ntax=38;
+	Taxlabels
+		Arctostaphylosandersonii
+		Arctostaphylosauriculata
+		Arctostaphylosbakeri
+		Arctostaphyloscanescens
+		Arctostaphyloscatalinae
+		Arctostaphyloscolumbiana
+		Arctostaphylosdensiflora
+		Arctostaphylosglandulosa
+		Arctostaphylosglauca
+		Arctostaphyloshispidula
+		Arctostaphyloshookeri
+		Arctostaphyloshooveri
+		Arctostaphylosimbricata
+		Arctostaphylosmanzanita
+		Arctostaphylosmendocinoensis
+		Arctostaphylosmewukka
+		Arctostaphylosmontereyensis
+		Arctostaphylosmorroensis
+		Arctostaphylosmyrtifolia
+		Arctostaphylosnissenana
+		Arctostaphylosnummularia
+		Arctostaphylosobispoensis
+		Arctostaphylospajaroensis
+		Arctostaphylospallida
+		Arctostaphylosparryana
+		Arctostaphylospatula
+		Arctostaphylospechoensis
+		Arctostaphylospeninsularis
+		Arctostaphylospilosula
+		Arctostaphylospringlei
+		Arctostaphylospungens
+		Arctostaphylosrefugioensis
+		Arctostaphylossilvicola
+		Arctostaphylosstanfordiana
+		Arctostaphylostomentosa
+		Arctostaphylosuva
+		Arctostaphylosviridissima
+		Arctostaphylosviscida
+		;
+End;
+
+Begin trees;
+tree TREE1 = [&R](((((((((((((Arctostaphyloscanescens[&index=37]:0.074279,Arctostaphylosrefugioensis[&index=36]:0.074279)[&index=38,posterior=0.087353,ccp=0.333333,height_95%_HPD={0.000186,0.526443}]:0.057868,Arctostaphylospilosula[&index=35]:0.132147)[&index=39,posterior=0.018958,ccp=0.466667,height_95%_HPD={0.007589,0.780223}]:0.269786,Arctostaphyloscatalinae[&index=34]:0.401933)[&index=40,posterior=0.002400,ccp=0.111111,height_95%_HPD={0.258877,1.174}]:0.049497,Arctostaphylosandersonii[&index=33]:0.451430)[&index=41,posterior=0.001440,ccp=0.625000,height_95%_HPD={0.269583,1.67954}]:0.733311,((Arctostaphyloshooveri[&index=32]:0.037914,Arctostaphylospajaroensis[&index=31]:0.037914)[&index=42,posterior=0.565635,ccp=0.562958,height_95%_HPD={0,0.538603}]:0.371305,Arctostaphylosbakeri[&index=30]:0.409219)[&index=43,posterior=0.949764,ccp=0.625000,height_95%_HPD={0.037912,1.13613}]:0.775522)[&index=44,posterior=0.000640,ccp=1.000000,height_95%_HPD={0.687818,2.2653}]:0.441496,Arctostaphylosviridissima[&index=29]:1.626237)[&index=45,posterior=0.000080,ccp=0.016129,height_95%_HPD={1.62624,1.62624}]:0.196121,(((Arctostaphylosglandulosa[&index=28]:0.630200,Arctostaphylosglauca[&index=27]:0.630200)[&index=46,posterior=0.088153,ccp=0.358333,height_95%_HPD={0,0.585182}]:0.031218,Arctostaphyloscolumbiana[&index=26]:0.661418)[&index=47,posterior=0.019198,ccp=0.322034,height_95%_HPD={0.014931,0.736515}]:0.231868,Arctostaphylospungens[&index=25]:0.893286)[&index=48,posterior=0.004720,ccp=0.016129,height_95%_HPD={0.021041,1.14484}]:0.929072)[&index=49,posterior=0.004960,ccp=0.250000,height_95%_HPD={1.22417,3.48209}]:0.164288,Arctostaphylossilvicola[&index=24]:1.986646)[&index=50,posterior=0.000320,ccp=0.013043,height_95%_HPD={1.83729,3.75927}]:0.094188,((Arctostaphylosmanzanita[&index=23]:0.678187,Arctostaphylosobispoensis[&index=22]:0.678187)[&index=51,posterior=0.014879,ccp=0.064734,height_95%_HPD={0.094733,1.39227}]:0.435997,(Arctostaphylosmontereyensis[&index=21]:1.034366,Arctostaphylospallida[&index=20]:1.034366)[&index=52,posterior=0.527558,ccp=0.064734,height_95%_HPD={0.179683,1.98484}]:0.079818)[&index=53,posterior=0.082793,ccp=0.013043,height_95%_HPD={0.450397,2.23138}]:0.966650)[&index=54,posterior=0.018399,ccp=0.162722,height_95%_HPD={2.04406,4.50501}]:0.616014,Arctostaphylosauriculata[&index=19]:2.696848)[&index=55,posterior=0.054076,ccp=0.233198,height_95%_HPD={2.40155,4.855}]:2.576987,((((((Arctostaphylosmendocinoensis[&index=18]:0.355057,Arctostaphylosstanfordiana[&index=17]:0.355057)[&index=56,posterior=0.657947,ccp=0.694222,height_95%_HPD={0,0.566775}]:1.421366,Arctostaphyloshispidula[&index=16]:1.776423)[&index=57,posterior=0.710263,ccp=0.715207,height_95%_HPD={0.106478,1.02946}]:0.357256,Arctostaphylosdensiflora[&index=15]:2.133679)[&index=58,posterior=0.967923,ccp=1.000000,height_95%_HPD={0.307186,1.58121}]:0.841135,Arctostaphylosmyrtifolia[&index=14]:2.974814)[&index=59,posterior=0.062715,ccp=0.021255,height_95%_HPD={1.0839,2.65162}]:0.048731,((((Arctostaphylosnummularia[&index=13]:0.831002,Arctostaphylospatula[&index=12]:0.831002)[&index=60,posterior=0.242381,ccp=0.287762,height_95%_HPD={0.101868,1.16014}]:0.050158,Arctostaphyloshookeri[&index=11]:0.881160)[&index=61,posterior=0.652988,ccp=0.892308,height_95%_HPD={0.2261,1.52761}]:1.531749,Arctostaphylosparryana[&index=10]:2.412909)[&index=62,posterior=0.181985,ccp=0.681048,height_95%_HPD={0.443287,2.00803}]:0.529038,(Arctostaphylosimbricata[&index=9]:1.309836,Arctostaphylosmewukka[&index=8]:1.309836)[&index=63,posterior=1.000000,ccp=0.681048,height_95%_HPD={0.328957,1.66687}]:1.632111)[&index=64,posterior=0.051916,ccp=0.021255,height_95%_HPD={1.08294,2.63332}]:0.081598)[&index=65,posterior=0.703784,ccp=0.158428,height_95%_HPD={1.33792,3.03555}]:1.087094,(((Arctostaphylospeninsularis[&index=7]:1.314148,Arctostaphylospringlei[&index=6]:1.314148)[&index=66,posterior=0.999840,ccp=0.992722,height_95%_HPD={0.397263,2.25038}]:0.926773,(Arctostaphylostomentosa[&index=5]:1.441503,Arctostaphylosuva[&index=4]:1.441503)[&index=67,posterior=0.260139,ccp=0.992722,height_95%_HPD={0.246098,2.17256}]:0.799418)[&index=68,posterior=0.054956,ccp=0.226891,height_95%_HPD={1.39282,3.65947}]:0.508964,(Arctostaphylosnissenana[&index=3]:0.940848,Arctostaphylosviscida[&index=2]:0.940848)[&index=69,posterior=0.989441,ccp=0.226891,height_95%_HPD={0.078705,1.77887}]:1.809037)[&index=70,posterior=0.152308,ccp=0.158428,height_95%_HPD={1.64268,3.96209}]:1.360754)[&index=71,posterior=0.592273,ccp=0.233198,height_95%_HPD={2.29956,4.55591}]:1.163196)[&index=72,posterior=0.197584,ccp=0.197584,height_95%_HPD={2.97389,5.91908}]:1.736360,Arctostaphylosmorroensis[&index=1]:7.010195)[&index=73,posterior=1.000000,ccp=1.000000,height_95%_HPD={3.70531,8.70463}]:16.364876,Arctostaphylospechoensis[&index=0]:23.375071)[&index=74,posterior=1.000000,ccp=1.000000,height_95%_HPD={23.03,24.0652}]:0.000000;
+End;
