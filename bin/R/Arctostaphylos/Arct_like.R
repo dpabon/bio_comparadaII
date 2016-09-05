@@ -3,7 +3,6 @@ library(FD)
 library(snow)
 library(parallel)
 library(BioGeoBEARS)
-library(BioGeoBEARS)
 source("http://phylo.wdfiles.com/local--files/biogeobears/cladoRcpp.R") # (needed now that traits model added; source FIRST!)
 source("http://phylo.wdfiles.com/local--files/biogeobears/BioGeoBEARS_add_fossils_randomly_v1.R")
 source("http://phylo.wdfiles.com/local--files/biogeobears/BioGeoBEARS_basics_v1.R")
@@ -46,7 +45,7 @@ geogfn = "~/MEGAsync/bio_comparadaII/result/Arctostaphylos/final/Arctostaphylos_
 tipranges = getranges_from_LagrangePHYLIP(lgdata_fn=geogfn)
 # Set the maximum number of areas any species may occupy; this cannot be larger
 # than the number of areas you set up, but it can be smaller.
-max_range_size = 3
+max_range_size = 2
 
 #######################################################
 # Run DEC

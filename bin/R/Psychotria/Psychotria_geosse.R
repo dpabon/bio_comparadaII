@@ -1,8 +1,8 @@
 ## Calculo AIC datos empiricos
-Psychotria
+
 library(diversitree)
 library(BioGeoBEARS)
-arbol <- read.tree("~/MEGAsync/bio_comparadaII/result/Psychotria//final/output/Psychotria.new") 
+arbol <- read.tree("~/MEGAsync/bio_comparadaII/result/Psychotria/final/output/Psychotria.new") 
 geogfn = "~/MEGAsync/bio_comparadaII/result/Psychotria/final/Psychotria_geo.dat"
 
 datos <- getranges_from_LagrangePHYLIP(lgdata_fn=geogfn)
@@ -27,9 +27,11 @@ for( i in 1:nrow(datos)){
 names(datos1) <- rownames(datos)
 length(datos1)
 lik1 <- make.musse(arbol, states =  datos1, k = 4)
-pars <- c(runif(20, 0,1))
+pars <- starting.point.musse(arbol, k = 4)
+
 likelihod <- find.mle(lik1, x.init = pars )
 str(likelihod)
 likelihod$lnLik
 
+## Calculo valor AIC
 aic_muse_psyco <- -2 * (likelihod$lnLik) + 2 * 20
